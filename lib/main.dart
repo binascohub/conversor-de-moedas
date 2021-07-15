@@ -48,21 +48,27 @@ class _HomeState extends State<Home> {
   double euro = 0.0;
 
   void _realChanged(String text) {
-    double real = double.parse(text);
+    double real = text.isEmpty?0:double.parse(text);
     dollarController.text = (real / dollar).toStringAsFixed(2);
     euroController.text = (real / euro).toStringAsFixed(2);
   }
 
   void _dollarChanged(String text) {
-    double dollar = double.parse(text);
+    double dollar = text.isEmpty ?0:double.parse(text);
     realController.text = (dollar * this.dollar).toStringAsFixed(2);
     euroController.text = ((dollar * this.dollar) / euro).toStringAsFixed(2);
   }
 
   void _euroChanged(String text) {
-    double euro = double.parse(text);
+    double euro = text.isEmpty?0:double.parse(text);
     realController.text = (euro * this.euro).toStringAsFixed(2);
     dollarController.text = ((euro * this.euro) / dollar).toStringAsFixed(2);
+  }
+
+  void _clearAll(){
+    realController.text = "";
+    dollarController.text = "";
+    euroController.text = "";
   }
 
   @override
